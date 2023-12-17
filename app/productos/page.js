@@ -27,15 +27,16 @@ export default function Home() {
 
   return (
     <div className="flex">
-      <div className="w-fit my-4 mx-12">
+      <div className="xl:w-1/5 my-4 mx-12 hidden">
         {categorias.map((categoria) => (
           <div>
-            <p className="px-2 py-[0.1rem]">{categoria}</p>
+            <p className="px-3 py-[0.1rem] hover:font-medium xl:text-base text-sm">- {categoria}</p>
           </div>
         ))}
       </div>
-      <div className="ml-16">
-      <CardsContainer products={products} /></div>
+      <div className=" xl:w-4/5">
+        <CardsContainer products={products} />
+      </div>
     </div>
   );
 }
