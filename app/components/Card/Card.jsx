@@ -1,15 +1,23 @@
+"use client";
+import Detail from "../Detail/Detail";
+import { useState } from "react";
+
 const Card = ({ product }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div>
       {!product.imagenes ? null : (
         <div className="flex lg:flex-col lg:items-center m-2 p-2 lg:p-0 border-2 border-white rounded-sm bg-white w-auto lg:w-64 lg:h-80 shadow-xl">
           <div className="flex items-center ml-2 lg:ml-0 w-40 lg:w-auto">
-            <img
-              className="lg:my-6 lg:w-24 lg:h-24 md:w-auto md:h-3/5 h-20 w-20"
-              key={product.id}
-              src={product.imagenes[0]?.ruta || product.imagenes[2]?.ruta}
-              alt={product.nombre}
-            />
+            <button onClick={() => setIsModalOpen(true)}>
+              <img
+                className="lg:my-6 lg:w-24 lg:h-24 md:w-auto md:h-3/5 h-20 w-20"
+                key={product.id}
+                src={product.imagenes[0]?.ruta || product.imagenes[2]?.ruta}
+                alt={product.nombre}
+              />
+            </button>
           </div>
           <div className="flex flex-col md:flex-row lg:flex-col items-center justify-between h-auto lg:w-auto w-full">
             <div className="flex flex-col items-center justify-between h-auto lg:w-auto w-full md:mr-2 lg:m-0">
@@ -31,6 +39,13 @@ const Card = ({ product }) => {
             </div>
           </div>
         </div>
+      )}
+      {isModalOpen && (
+        <Detail
+          key={product.nombre}
+          setOpen={setIsModalOpen}
+          product={product}
+        />
       )}
     </div>
   );
