@@ -1,3 +1,4 @@
+"use client";
 import { useGetCategoriesQuery } from "@/lib/services/products/productsAPI";
 
 const Categorias = ({ setCategory }) => {

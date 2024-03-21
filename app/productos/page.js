@@ -1,6 +1,10 @@
 "use client";
 
-import { useGetProductsByCategoryQuery } from "@/lib/services/products/productsAPI";
+import InfiniteScroll from "react-infinite-scroll-component";
+import {
+  useGetProductsByCategoryQuery,
+  useGetProductsByNameQuery,
+} from "@/lib/services/products/productsAPI";
 import CardsContainer from "../components/CardsContainer/CardsContainer";
 import Categorias from "../components/Categorias/Categorias";
 import { useState } from "react";
@@ -14,8 +18,9 @@ export default function Products() {
     error,
     isLoading,
     isFetching,
-  } = useGetProductsByCategoryQuery(category);
+  } = useGetProductsByCategoryQuery(category) 
 
+  
   if (isLoading || isFetching)
     return (
       <div className="min-h-screen min-w-screen flex items-center justify-center">
@@ -23,9 +28,8 @@ export default function Products() {
       </div>
     );
 
-  if (isError) return <p>error: {error.message}</p>;
+  if (isError) return <p>error: {error.data}</p>;
 
-  
   return (
     <div className="flex justify-center">
       <div className="flex">
